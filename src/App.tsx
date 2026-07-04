@@ -808,7 +808,7 @@ export default function App() {
     }
 
     if (currentIndex + 1 < activeChapter.questions.length) {
-      setCurrentIndex(prev => prev + 1);
+      setCurrentIndex((prev: number) => prev + 1);
     } else {
       setView('results');
     }
@@ -824,7 +824,7 @@ export default function App() {
     }
 
     if (currentIndex > 0) {
-      setCurrentIndex(prev => prev - 1);
+      setCurrentIndex((prev: number) => prev - 1);
     }
   };
 
