@@ -1,0 +1,656 @@
+1. During an Oracle Autonomous Database (ADB) Serverless scheduled maintenance, 
+whathappens to the database?
+A. The database is unavailable until maintenance is completed.
+B. The database remains available throughout the maintenance.
+C. Users must manually restart the database after patching.
+D. Existing database connections are permanently terminated.
+Answer: B. The database remains available throughout the maintenance.
+Explanation: Oracle applies patches while keeping the database available, minimizing downtime.
+2. Which statement about Oracle Autonomous Database Serverless patching is TRUE?
+A. Users can freely modify the maintenance schedule.
+B. Oracle automatically patches the database during scheduled maintenance windows.
+C. Maintenance always requires manual DBA intervention.
+D. Maintenance windows usually last more than 8 hours.
+Answer: B. Oracle automatically patches the database during scheduled maintenance windows.
+Explanation: Oracle handles patching automatically during scheduled maintenance windows without 
+user intervention.
+3. Where can a DBA view the next scheduled maintenance time for an 
+AutonomousDatabase instance?
+A. SQL Developer
+B. Oracle Enterprise Manager
+C. OCI Console instance page
+D. Database Alert Log
+Answer: C. OCI Console instance page
+Explanation: The OCI Console shows the maintenance schedule, patch level, and maintenance 
+history.
+4. Which predefined database service is recommended for most OLTP (Online Transaction 
+Processing) applications?
+A. LOW
+B. HIGH
+C. TP
+D. MEDIUM
+Answer: C. TP
+Explanation: The TP service is optimized for OLTP workloads with high concurrency and SQL 
+parallelism of 1.
+5. During planned maintenance, how long are predefined services drained before 
+maintenance begins?
+A. TP: 1 hour, Batch: 5 minutes
+B. TP: 5 minutes, Batch: 1 hour
+C. TP: 2 hours, Batch: 2 hours
+D. TP: No draining, Batch: 30 minutes
+Answer: B. TP: 5 minutes, Batch: 1 hour
+Explanation: Before maintenance, TP services are drained for 5 minutes and Batch services for 1 
+hour.
+6. Which version of JDK standardizes request boundaries by default for Transparent 
+Application Continuity (TAC)?
+A. JDK 7
+B. JDK 8
+C. JDK 9
+D. JDK 10
+Answer: C. JDK 9
+Explanation: Starting with JDK 9, TAC automatically standardizes request boundaries, enabling 
+seamless replay of interrupted requests.
+Authentication and Connectivity (mTLS / TLS)
+7. Which authentication method is enabled by default in Oracle Autonomous Database?
+A. TLS
+B. SSL
+C. Mutual TLS (mTLS)
+D. Kerberos
+Answer: C. Mutual TLS (mTLS)
+Explanation: mTLS is enabled by default because it provides secure two-way authentication between 
+the client and the database.
+8. What is the primary purpose of the Autonomous Database credentials wallet?
+A. Store database backups
+B. Store JDBC drivers
+C. Store security credentials required for mTLS authentication
+D. Store SQL scripts
+Answer: C. Store security credentials required for mTLS authentication
+Explanation: The wallet contains certificates and keys needed for secure mTLS authentication.
+9. What is the purpose of the TNS_ADMIN environment variable?
+A. It specifies the Java installation path.
+B. It points to the Oracle network configuration directory.
+C. It stores the database password.
+D. It specifies the JDBC driver version.
+Answer: B. It points to the Oracle network configuration directory.
+Explanation: TNS_ADMIN tells Oracle where to find configuration files such as tnsnames.ora and 
+sqlnet.ora.
+10. Which of the following is NOT listed as a benefit of TLS authentication?
+A. No wallet download for supported JDBC Thin clients
+B. Reduced connection latency
+C. Automatic database backup
+D. No wallet rotation
+Answer: C. Automatic database backup
+Explanation: TLS provides secure communication, but it has nothing to do with database backups.
+11. If the TNS_ADMIN environment variable is not set, what must be included in the JDBC
+URL?
+A. Wallet directory information
+B. Only the database username
+C. SQL query
+D. Listener configuration
+Answer: A. Wallet directory information
+Explanation: Without TNS_ADMIN, the JDBC URL must specify the wallet location so the client can 
+find the security credentials.
+12. When TLS authentication is enabled, which connectivity modes are supported?
+A. TLS only
+B. mTLS only
+C. Either mTLS only or mTLS + TLS
+D. SSL only
+Answer: C. Either mTLS only or mTLS + TLS
+Explanation: Autonomous Database can be configured to allow only mTLS or both mTLS and TLS 
+connections.
+13. Which parameter should be set in ojdbc.properties when TNS_ADMIN is used?
+A. oracle.jdbc.url
+B. oracle.net.wallet_location
+C. wallet.password
+D. jdbc.driver
+Answer: B. oracle.net.wallet_location
+Explanation: This parameter specifies the location of the Oracle Wallet used for secure connections.
+14. A developer needs to connect to Autonomous Database through an HTTP proxy. Which 
+file must be modified?
+A. listener.ora
+B. init.ora
+C. tnsnames.ora
+D. spfile.ora
+Answer: C. tnsnames.ora
+Explanation: Proxy settings are configured in the tnsnames.ora file for the database connection.
+15. Which statement about the Oracle Wallet is correct?
+A. It is required for all TLS connections.
+B. It is required only for mTLS authentication.
+C. It stores database tables.
+D. It replaces the JDBC driver.
+Answer: B. It is required only for mTLS authentication.
+Explanation: The Oracle Wallet is needed only for mTLS because it stores the client certificates used 
+for authentication.
+OCI REST API and CLI
+16. Why must all OCI REST API requests be signed?
+A. To improve database performance
+B. To reduce storage usage
+C. For authentication purposes
+D. To increase CPU allocation
+Answer: C. For authentication purposes
+Explanation: All Oracle Cloud Infrastructure API requests must be signed for authentication purposes. 
+Signing verifies the identity of the requester and ensures secure communication.
+17. Which algorithm is used to create the OCI API request signature?
+A. MD5
+B. SHA1
+C. RSA-SHA256
+D. AES-256
+Answer: C. RSA-SHA256
+Explanation: OCI creates the signature using the user's private key and the RSA-SHA256 algorithm. 
+This digital signature is added to the Authorization header.
+18. Which protocol is required when using OCI REST APIs?
+A. FTP
+B. HTTP
+C. HTTPS with TLS 1.2
+D. SMTP
+Answer: C. HTTPS with TLS 1.2
+Explanation: OCI APIs use HTTPS requests and require TLS 1.2, ensuring secure communication 
+between client and server.
+19. What is the primary advantage of OCI REST APIs?
+A. Reduce CPU consumption
+B. Replace SQL completely
+C. Create reusable deployment and management scripts
+D. Eliminate databases
+Answer: C. Create reusable deployment and management scripts
+Explanation: APIs allow creation of customized deployment and management scripts that can be 
+saved and reused.
+20. What does the lifecycle state "PROVISIONING" indicate?
+A. Database is deleted
+B. Database is stopped
+C. Database is being created/configured
+D. Database is unavailable permanently
+Answer: C. Database is being created/configured
+Explanation: PROVISIONING means the Autonomous Database creation process is still in progress.
+21. In which format should the SSH key pair be generated for OCI API authentication?
+A. XML
+B. JSON
+C. PEM
+D. TXT
+Answer: C. PEM
+Explanation: OCI requires the key pair in PEM (Privacy Enhanced Mail) format. PEM is a standard 
+format for storing cryptographic keys and is supported by OCI authentication mechanisms. The private 
+key signs API requests, while the public key is uploaded to OCI for verification.
+22. OCI CLI is built using which programming language?
+A. Java
+B. Python
+C. C++
+D. JavaScript
+Answer: B. Python
+Explanation: OCI CLI is developed using Python. It uses Python libraries to communicate with Oracle 
+Cloud Infrastructure services and supports automation and scripting.
+23. Which OCI CLI command is used to list all Autonomous Databases in a compartment?
+A. oci db autonomous-database get
+B. oci db autonomous-database create
+C. oci db autonomous-database list
+D. oci db autonomous-database delete
+Answer: C. oci db autonomous-database list
+Explanation: The list command displays all Autonomous Databases available in a specified 
+compartment. It helps administrators view and manage existing databases.
+24. Which of the following is required to authenticate OCI CLI API requests?
+A. Username and Password
+B. API Token
+C. Key Pair (Public and Private Keys)
+D. Security Certificate
+Answer: C. Key Pair (Public and Private Keys)
+Explanation: OCI CLI uses API signing keys for authentication. The public key is uploaded to Oracle 
+Cloud, while the private key remains securely on the user's system.
+25. Which workload type value is used to create an Autonomous Data Warehouse (ADW)?
+A. ATP
+B. OLTP
+C. DW
+D. JSON
+Answer: C. DW
+Explanation: DW stands for Data Warehouse. It is the workload type specified when creating an 
+Autonomous Data Warehouse designed for analytics and reporting workloads.
+26. Which command is used to generate a wallet for an Autonomous Database using OCI 
+CLI?
+A. oci db autonomous-database create-wallet
+B. oci db autonomous-database generate-wallet
+C. oci db autonomous-database wallet-create
+D. oci db autonomous-database get-wallet
+Answer: B. oci db autonomous-database generate-wallet
+Explanation: The generate-wallet command creates and downloads the Autonomous Database 
+wallet, which contains the credentials and network configuration required for secure database 
+connections.
+Network Security (ACL, Private Endpoint, NSG)
+27. By default, an Autonomous Database without an ACL is accessible from:
+A. Only Oracle Cloud
+B. Only Private IPs
+C. Any IP Address
+D. Only OCI Console
+Answer: C. Any IP Address
+Explanation: Without an ACL, Oracle allows connections from any IP address. ACL is used only when 
+you want to restrict access.
+28. Which statement about Access Control Lists (ACLs) is TRUE?
+A. ACL blocks only SQL Developer Web.
+B. ACL blocks only APEX.
+C. ACL blocks all IP addresses except those specified in the list.
+D. ACL encrypts network traffic.
+Answer: C. ACL blocks all IP addresses except those specified in the list.
+Explanation: ACL works as a whitelist. Only configured IPs, CIDRs, or VCNs are allowed. Everything 
+else is rejected.
+29. When can a Private Endpoint be configured for an Autonomous Database?
+A. Only after provisioning
+B. Anytime after creation
+C. During provisioning or cloning
+D. Only after backup
+Answer: C. During provisioning or cloning
+Explanation: Oracle does not allow converting an existing ADB directly to a Private Endpoint. It must 
+be chosen while provisioning or by cloning.
+30. What is the primary purpose of a Private Endpoint?
+A. Increase storage
+B. Improve CPU performance
+C. Keep database traffic off the public internet
+D. Enable backups
+Answer: C. Keep database traffic off the public internet
+Explanation: A Private Endpoint gives the database a private IP inside the VCN, ensuring traffic 
+remains private.
+31. What is the function of a Network Security Group (NSG)?
+A. Backup database
+B. Encrypt database
+C. Acts as a virtual firewall using security rules
+D. Creates database users
+Answer: C. Acts as a virtual firewall using security rules
+Explanation: An NSG controls inbound (Ingress) and outbound (Egress) traffic, functioning as a virtual 
+firewall.
+Encryption
+32. Which encryption technology protects data at rest in Oracle Autonomous Database?
+A. SSL
+B. TLS
+C. Transparent Data Encryption (TDE)
+D. VPN
+Answer: C. Transparent Data Encryption (TDE)
+Explanation: TDE encrypts data stored in tables, tablespaces, and data files (data at rest).
+33. Which statement about Oracle Autonomous Database encryption is TRUE?
+A. Encryption is optional.
+B. Users must manually enable encryption.
+C. Data at rest and data in transit are encrypted by default and encryption cannot be turned off.
+D. Only backups are encrypted.
+Answer: C. Data at rest and data in transit are encrypted by default and encryption cannot be 
+turned off.
+Explanation: Oracle Autonomous Database uses Always-On Encryption. Both stored data and 
+network communication are encrypted automatically.
+Performance Monitoring
+34. Which page in the Oracle Cloud Console displays current and historical performance 
+metrics for an Autonomous Database instance?
+A. SQL Worksheet
+B. Performance Hub
+C. Metrics Resource Page
+D. Database Actions
+Answer: C. Metrics Resource Page
+Explanation: The Metrics Resource Page displays current and historical metrics such as CPU 
+utilization, storage, and sessions.
+35. Which metric shows the percentage of provisioned storage capacity currently in use?
+A. CPU Utilization
+B. Execute Count
+C. Storage
+D. Sessions
+Answer: C. Storage
+Explanation: The Storage metric represents the percentage of provisioned storage capacity used by 
+all tablespaces.
+36. CPU utilization is reported as a percentage with respect to which of the following?
+A. Total database sessions
+B. Number of SQL statements
+C. Two times the number of ECPUs
+D. Storage capacity
+Answer: C. Two times the number of ECPUs
+Explanation: CPU utilization is calculated relative to twice the number of ECPUs allocated to the 
+database.
+37. Which Oracle Cloud feature provides real-time and historical performance analysis, 
+including ASH Analytics and SQL Monitoring?
+A. Database Actions
+B. OCI CLI
+C. Performance Hub
+D. SQL Developer Web
+Answer: C. Performance Hub
+Explanation: Performance Hub provides deeper performance analysis, including ASH Analytics, SQL 
+Monitoring, ADDM, Workload, and Blocking Sessions.
+38. Which option in Performance Hub allows users to create and download an Automatic 
+Workload Repository (AWR) report?
+A. Refresh
+B. Reports
+C. Time Selector
+D. Activity Summary
+Answer: B. Reports
+Explanation: The Reports option is used to create and download an AWR report.
+39. Which of the following is NOT displayed as a metric on the Metrics Resource page?
+A. Storage
+B. CPU Utilization
+C. Sessions
+D. Backup Retention
+Answer: D. Backup Retention
+Explanation: The Metrics Resource page displays Storage, CPU Utilization, Sessions, Execute 
+Count, Running SQL Statements, and Queued Statements. Backup Retention is not a performance 
+metric.
+40. Which of the following is NOT a tab available in Performance Hub?
+A. ASH Analytics
+B. SQL Monitoring
+C. Blocking Sessions
+D. Backup History
+Answer: D. Backup History
+Explanation: Performance Hub includes ASH Analytics, SQL Monitoring, ADDM, Workload, and 
+Blocking Sessions. Backup History is not a Performance Hub tab.
+Oracle Data Safe
+41. Which Oracle Data Safe feature directly links high-risk users to their audit records?
+A. Security Assessment
+B. Data Discovery
+C. User Assessment
+D. Data Masking
+Answer: C. User Assessment
+Explanation: User Assessment provides direct links to audit records for each user.
+42. To discontinue Oracle Data Safe services for a database, the administrator should:
+A. Stop auditing
+B. Delete audit logs
+C. Deregister the database
+D. Disable masking
+Answer: C. Deregister the database
+Explanation: Registering enables Oracle Data Safe, and deregistering disables Oracle Data Safe for 
+the database.
+43. Which Oracle Data Safe capability is specifically intended to protect non-production 
+databases?
+A. Activity Auditing
+B. Data Discovery
+C. Data Masking
+D. Security Assessment
+Answer: C. Data Masking
+Explanation: Data Masking replaces real data with fictitious data before copying databases to 
+development or testing environments.
+44. Which Oracle Data Safe feature provides recommendations mapped to regulations and 
+standards?
+A. Activity Auditing
+B. Security Assessment
+C. Data Discovery
+D. Data Masking
+Answer: B. Security Assessment
+Explanation: Security Assessment evaluates the security posture of your database and checks 
+whether it is configured according to Oracle security best practices.
+45. Oracle Data Safe pricing is based primarily on:
+A. Database size
+B. Number of users
+C. Audit records exceeding the free monthly limit
+D. Number of tables
+Answer: C. Audit records exceeding the free monthly limit
+Explanation: Oracle Data Safe is free for up to 1 million audit records per month; pricing applies 
+beyond that limit.
+Limits, Quotas, and Compartments
+46. A cloud administrator wants the Finance team to use no more than 15 TB of 
+Autonomous Database storage, even though the tenancy allows 128 TB. Which feature 
+should be configured?
+A. Service Limit
+B. Database Vault
+C. Compartment Quota
+D. Auto Scaling
+Answer: C. Compartment Quota
+Explanation: Service limits are Oracle-defined; compartment quotas let administrators enforce lower 
+limits within specific compartments.
+47. An OCI console shows a database service limit of N/A for Dedicated 
+AutonomousDatabase storage. What is the most likely reason?
+A. The service is disabled.
+B. The tenancy is suspended.
+C. The limit depends on the capacity of the provisioned Exadata hardware.
+D. Oracle has not assigned any storage.
+Answer: C. The limit depends on the capacity of the provisioned Exadata hardware.
+Explanation: In Autonomous Database Dedicated, storage and ECPUs are determined by the 
+capacity of the provisioned Exadata Infrastructure, not by Oracle service limits. Therefore, the OCI 
+console displays N/A instead of a numeric service limit.
+48. A parent compartment contains three subcompartments. If the 
+subcompartmentstogether consume 60 ECPUs, how is this reflected in the parent 
+compartment's usage?
+A. Parent usage remains 0.
+B. Only the largest subcompartment counts.
+C. Only directly created resources count.
+D. The parent compartment usage includes the total usage of all subcompartments.
+Answer: D. The parent compartment usage includes the total usage of all subcompartments.
+Explanation: OCI tracks resource usage hierarchically. The usage of all subcompartments is 
+automatically included in the usage of the parent compartment, helping administrators monitor total 
+resource consumption.
+49. A company upgrades its OCI account from Always Free to Paid. Which change is 
+mostlikely to occur automatically?
+A. Existing quotas are deleted.
+B. Oracle increases applicable service limits based on the new subscription.
+C. All compartments are removed.
+D. All IAM policies are reset.
+Answer: B. Oracle increases applicable service limits based on the new subscription.
+Explanation: Service limits are controlled by Oracle and depend on subscription type. Upgrading from 
+Always Free to Paid automatically increases resource limits (for example, CPU limits) without affecting 
+quotas, compartments, or IAM policies.
+50. An administrator wants to completely prevent a compartment from consuming 
+aparticular resource without deleting the compartment. Which quota policy action best fits 
+this requirement?
+A. UNSET
+B. SET
+C. ZERO
+D. RESET
+Answer: C. ZERO
+Explanation: The ZERO quota policy completely blocks the use of a specific resource within a 
+compartment. It is useful when administrators want to prohibit resource consumption while keeping the 
+compartment available.
+51. A new compartment has been created successfully, but a developer still cannot 
+accessit. What is the most likely reason?
+A. The compartment must first contain resources.
+B. Oracle has not activated the compartment yet.
+C. The service limit is zero.
+D. No IAM policy has been created to grant the developer access.
+Answer: D. No IAM policy has been created to grant the developer access.
+Explanation: Creating a compartment does not automatically grant access. An administrator must 
+create an IAM policy that gives the required users or groups permission to access resources in that 
+compartment.
+52. An administrator wants to monitor the total storage available, current usage, 
+andremaining capacity for Autonomous Databases. Which OCI Console page provides this 
+information?
+A. Identity & Security
+B. Monitoring
+C. Limits, Quotas & Usage
+D. Database Actions
+Answer: C. Limits, Quotas & Usage
+Explanation: The Limits, Quotas & Usage page displays service limits, resource usage, and available 
+capacity.
+Predefined Database Services and Wallets
+53. Which predefined database service provides the highest priority for time-critical 
+transaction processing operations?
+A. TP
+B. High
+C. Medium
+D. TPURGENT
+Answer: D. TPURGENT
+Explanation: TPURGENT is the highest-priority application connection service used for time-critical 
+transaction processing operations. It supports manual parallelism to improve performance for urgent 
+workloads.
+54. Which predefined database service is used for normal transaction processing and does 
+not support parallelism?
+A. TP
+B. High
+C. Medium
+D. Low
+Answer: A. TP
+Explanation: TP is the standard transaction processing service. Unlike TPURGENT, it does not run 
+with parallelism, making it suitable for regular OLTP operations.
+55. Which predefined service is designed for high-priority reporting and batch operations?
+A. TP
+B. High
+C. Low
+D. TPURGENT
+Answer: B. High
+Explanation: The High service is intended for reporting and batch workloads. All operations run in 
+parallel and are subject to queuing.
+56. What is the maximum degree of parallelism supported by the Medium service?
+A. 2
+B. 4
+C. 8
+D. Unlimited
+Answer: B. 4
+Explanation: The Medium service supports reporting and batch processing. It allows parallel 
+execution, but the degree of parallelism is limited to 4.
+57. Which predefined service is the lowest priority and does not support parallelism?
+A. TPURGENT
+B. TP
+C. Medium
+D. Low
+Answer: D. Low
+Explanation: The Low service is meant for low-priority reporting or batch processing. It does not run 
+with parallelism.
+58. Which wallet contains credentials and keys for only one Autonomous Database in 
+Autonomous Database Serverless?
+A. Regional Wallet
+B. Instance Wallet
+C. Shared Wallet
+D. Global Wallet
+Answer: B. Instance Wallet
+Explanation: An Instance Wallet contains credentials and keys for only one Autonomous Database 
+and is generated specifically for that database.
+59. Which wallet contains credentials and keys for all Autonomous Databases in a specific 
+region?
+A. Instance Wallet
+B. Regional Wallet
+C. Database Wallet
+D. Client Wallet
+Answer: B. Regional Wallet
+Explanation: A Regional Wallet stores credentials and keys for all Autonomous Databases within a 
+specified OCI region and is intended for database administrators.
+60. Which wallet type is available only for Autonomous Database Dedicated?
+A. Regional Wallet
+B. Instance Wallet only
+C. No Regional Wallet; only a single database wallet is provided
+D. Shared Wallet
+Answer: C. No Regional Wallet; only a single database wallet is provided
+Explanation: Autonomous Database Dedicated provides only a wallet for a single Autonomous 
+Database. It does not provide a Regional Wallet.
+61. Which of the following connection methods is supported by Oracle Autonomous 
+Database?
+A. SQL*Net
+B. JDBC
+C. ODBC
+D. All of the above
+Answer: D. All of the above
+Explanation: Oracle Autonomous Database supports connections through SQL*Net, JDBC 
+(Thin/OCI), and ODBC.
+62. Which JDBC connection type uses Java Keystore (JKS)?
+A. JDBC OCI
+B. JDBC Thin
+C. ODBC
+D. SQL*Net
+Answer: B. JDBC Thin
+Explanation: JDBC Thin uses Java Keystore (JKS) to store certificates and establish secure database 
+connections.
+Wallet Basics and Secure Connectivity
+63. What is the primary purpose of the Oracle Autonomous Database Wallet?
+A. Store SQL queries
+B. Store secure connection credentials
+C. Monitor database performance
+D. Backup database
+Answer: B. Store secure connection credentials
+Explanation: The Oracle Wallet contains certificates and network configuration files that enable clients 
+to securely authenticate and connect to the Autonomous Database.
+64. Which protocol is commonly used to establish a secure connection to Oracle 
+Autonomous Database?
+A. HTTP
+B. FTP
+C. SSL (Secure Sockets Layer)
+D. TLS (Transport Layer Security)
+Answer: D. TLS (Transport Layer Security)
+Explanation: Oracle Autonomous Database uses TLS to encrypt all communication between the client 
+and the database, protecting data from interception.
+65. Why is encryption used in Oracle Autonomous Database connectivity?
+A. To increase storage
+B. To secure data transmitted between client and database
+C. To improve query speed
+D. To reduce CPU usage
+Answer: B. To secure data transmitted between client and database
+Explanation: Encryption ensures confidentiality and integrity of data while it is transmitted over the 
+network, preventing unauthorized access.
+66. Which file is typically included in the downloaded Autonomous Database Wallet?
+A. tnsnames.ora
+B. config.xml
+C. database.sql
+D. listener.log
+Answer: A. tnsnames.ora
+Explanation: The tnsnames.ora file contains the network service names and connection descriptors 
+used by Oracle clients to connect to the Autonomous Database.
+67. What must a user provide along with the wallet to connect to an Autonomous 
+Database?
+A. Database username and password
+B. IP address only
+C. Database source code
+D. Operating system password
+Answer: A. Database username and password
+Explanation: The wallet provides secure network credentials, but the user must still authenticate using 
+a valid database username and password to access the database.
+Autonomous Data Guard
+68. What is the primary purpose of Autonomous Data Guard?
+A. To increase database storage capacity
+B. To provide automated disaster recovery with standby databases
+C. To improve SQL query execution speed
+D. To encrypt all database tables
+Answer: B. To provide automated disaster recovery with standby databases
+Explanation: Autonomous Data Guard provides automated disaster recovery using standby 
+databases.
+69. Why are paired regions used in Autonomous Data Guard?
+A. To improve backup compression
+B. To create remote standby databases for disaster recovery
+C. To increase CPU performance
+D. To reduce database licensing costs
+Answer: B. To create remote standby databases for disaster recovery
+Explanation: Paired regions allow remote standby databases for cross-region disaster recovery.
+70. When enabling Autonomous Data Guard, what must the user select?
+A. A paired region for the standby database
+B. A new database username
+C. A backup retention period only
+D. A different database version
+Answer: A. A paired region for the standby database
+Explanation: You select a paired region where the standby database will be created.
+71. Which feature is available with Autonomous Dedicated: Autonomous Data Guard 
+(AuDG)?
+A. Read-only access to the standby database
+B. Unlimited standby databases
+C. Automatic database version upgrades only
+D. Manual backup creation only
+Answer: A. Read-only access to the standby database
+Explanation: AuDG allows read-only access to the standby database.
+72. Which type of failure is Autonomous Data Guard designed to protect against?
+A. Printer failures
+B. Hardware failures and regional disasters
+C. Browser compatibility issues
+D. Incorrect SQL syntax
+Answer: B. Hardware failures and regional disasters
+Explanation: Autonomous Data Guard protects against hardware failures and regional disasters.
+Managing and Monitoring Autonomous Database (Auto Indexing)
+73. Which package is used to configure Automatic Indexing in Oracle Database?
+A. DBMS_STATS
+B. DBMS_SQL
+C. DBMS_AUTO_INDEX
+D. DBMS_METADATA
+Answer: C. DBMS_AUTO_INDEX
+Explanation: Oracle uses the DBMS_AUTO_INDEX package to enable, disable, and configure 
+Automatic Indexing.
+74. What is the correct sequence of the Automatic Indexing process?
+A. Identify → Capture → Verify → Monitor → Decide
+B. Capture → Identify → Verify → Decide → Monitor
+C. Capture → Verify → Identify → Decide → Monitor
+D. Verify → Capture → Decide → Monitor → Identify
+Answer: B. Capture → Identify → Verify → Decide → Monitor
+Explanation: Oracle first captures the SQL workload, identifies candidate indexes, verifies them, 
+decides whether to keep them, and then continuously monitors them.
+75. What happens to a candidate index before Oracle verifies its usefulness?
+A. It is immediately visible to all SQL statements.
+B. It is created as an unusable invisible index.
+C. It is dropped immediately.
+D. It becomes a primary key index.
+Answer: B. It is created as an unusable invisible index.
+Explanation: Oracle safely tests candidate indexes by creating them as unusable invisible indexes 
+before making them available.
+76. Which AUTO_INDEX_MODE setting enables Automatic Indexing and immediately 
+allowsnew indexes to be used by SQL statements?
+A. OFF
+B. REPORT ONLY
+C. IMPLEMENT
+D. VERIFY
+Answer: C. IMPLEMENT
+Explanation: IMPLEMENT mode creates visible indexes, allowing the optimizer to use them 
+immediately.
+77. What is Oracle's default retention period for unused automatically created indexes?
+A. 30 days
+B. 90 days
+C. 365 days
+D. 373 days
+Answer: D. 373 days
+Explanation: Unused automatic indexes are deleted after 373 days by default.

@@ -1,0 +1,674 @@
+1 What is the primary advantage of Autonomous Database Dedicated over Autonomous
+Database Serverless?
+A Requires manual patching and backups
+B Runs on dedicated Exadata infrastructure managed by Oracle ✓
+C Uses shared storage across multiple customers
+D Does not support autoscaling
+Explanation: Dedicated provides isolated Exadata infrastructure while Oracle still automates operations.
+2 Which deployment model is best suited for organizations with strict data sovereignty
+requirements?
+A Autonomous Database Serverless
+B Autonomous Database Dedicated in Oracle Public Cloud
+C Autonomous Database on Exadata Cloud@Customer ✓
+D Oracle Base Database Service
+Explanation: Cloud@Customer keeps data inside the customer's own data center.
+3 In Autonomous Database Dedicated, who manages the operating system, database
+software, and hardware?
+A Customer
+B Fleet Administrator
+C Oracle ✓
+D Database Administrator
+4 Which responsibility remains with the customer in Autonomous Database Dedicated?
+A Hypervisor patching
+B Hardware maintenance
+C Operating system upgrades
+D Managing data schemas and customer-managed encryption keys ✓
+5 Which infrastructure forms the foundation of Autonomous Database Dedicated?
+A Compute Instance
+B Kubernetes Cluster
+C Exadata Infrastructure ✓
+D File Storage
+6 What is the primary purpose of an Autonomous VM Cluster (AVMC)?
+A Store database backups
+B Partition Exadata Infrastructure into isolated database environments ✓
+C Create IAM users
+D Manage Object Storage
+7 What is the primary purpose of an Autonomous Container Database (ACD)?
+A Host one or more Autonomous Databases ✓
+B Replace Exadata Infrastructure
+C Store database backups
+D Manage OCI networking
+8 By default, databases created inside an Autonomous Container Database inherit which
+settings?
+A SQL scripts
+B Database passwords
+C Update schedules and backup retention policies ✓
+D IAM policies
+9 What is the default networking configuration for the subnet hosting an Autonomous VM
+Cluster?
+A Public subnet
+B Hybrid subnet
+C Private subnet ✓
+D Dynamic subnet
+10 Which Oracle technology transparently encrypts data without requiring application
+changes?
+A Oracle Data Guard
+B Transparent Data Encryption (TDE) ✓
+C Oracle GoldenGate
+D FastConnect
+11 Which Oracle networking service provides dedicated private connectivity between on premises infrastructure and OCI?
+A Internet Gateway
+B NAT Gateway
+C FastConnect ✓
+D Service Gateway
+12 Which networking technology provides ultra-low latency communication inside Exadata
+systems?
+A Fibre Channel
+B Ethernet
+C RDMA over Converged Ethernet (RoCE) ✓
+D MPLS
+13 A financial institution wants Oracle to manage the infrastructure while ensuring compute,
+memory, storage, and networking are never shared with other customers.
+Which deployment should be recommended?
+A Autonomous Database Serverless
+B Oracle Base Database Service
+C Autonomous Database Dedicated ✓
+D Shared Exadata Infrastructure
+14 A government organization cannot move regulated data outside its own data center but wants
+Oracle Autonomous Database automation, including automatic patching, backups, and
+autoscaling.
+Which deployment best satisfies this requirement?
+A Autonomous Database Serverless
+B Autonomous Database Dedicated
+C Autonomous Database on Exadata Cloud@Customer ✓
+D Exadata Database Service
+15 An enterprise wants different business units to have independent backup retention policies,
+software update schedules, and database densities.
+At which layer should these settings be configured?
+A Exadata Infrastructure
+B Autonomous VM Cluster
+C Autonomous Container Database (ACD) ✓
+D Virtual Cloud Network
+16 An administrator wants to minimize hardware acquisition costs by running Autonomous Database
+Dedicated and Exadata Database Service on the same physical rack.
+Which statement is correct?
+A This deployment is unsupported.
+B It is supported because both services can coexist on the same Exadata Infrastructure. ✓
+C It requires separate physical racks.
+D It is only available with Serverless.
+17 A company loses connectivity between its Exadata Cloud@Customer rack and the OCI Control
+Plane.
+Which functionality continues operating normally?
+A OCI Console management
+B Oracle Cloud Operations monitoring
+C Customer database access, automated backups, and autoscaling ✓
+D OCI REST API access
+18 Following the same connectivity loss, which capability becomes unavailable?
+A SQL query execution
+B Customer applications
+C OCI Console management and monitoring ✓
+D Automatic backups
+19 An organization requires a backup destination capable of providing near-zero Recovery Point
+Objective (RPO).
+Which backup destination should be selected?
+A Local NFS
+B Oracle Object Storage
+C Zero Data Loss Recovery Appliance (ZDLRA) ✓
+D Fast Recovery Area
+20 A company requires an off-site cloud-native backup destination for regulatory compliance.
+Which backup destination should be used?
+A Local Disk
+B Oracle Object Storage ✓
+C Network File System
+D Flash Recovery Area
+21 A legacy enterprise application cannot be modified to perform application-level encryption, but
+compliance requires all stored data to remain encrypted at rest.
+Which Oracle feature satisfies this requirement?
+A Oracle Data Guard
+B Transparent Data Encryption (TDE) ✓
+C FastConnect
+D RDMA over Converged Ethernet (RoCE)
+22 An administrator wants Oracle Cloud to manage infrastructure without opening inbound network
+ports into the customer's data center.
+Which mechanism enables this secure architecture?
+A Public SSH access
+B IPSec tunnel initiated by client databases
+C Outbound secure WebSocket tunnel established by Local Control Plane Servers ✓
+D Direct VPN into database nodes
+Explanation: The Local Control Plane Servers establish an outbound secure WebSocket tunnel to the
+OCI Control Plane, allowing Oracle to manage and monitor the environment without requiring inbound
+network access.
+1 Who is primarily responsible for provisioning and managing the Autonomous Private
+Database Cloud infrastructure?
+A Application Developer
+B Fleet Administrator ✓
+C Database User
+D Security Administrator
+Explanation: The Fleet Administrator provisions Exadata Infrastructure, Autonomous VM Clusters, and
+Autonomous Container Databases.
+2 Who provisions Autonomous Databases after the private database cloud has been
+configured?
+A Oracle Support
+B Fleet Administrator
+C Database Users / DBAs through self-service ✓
+D Network Administrator
+3 Which role is responsible for creating the Autonomous Private Database Cloud before
+database users can provision databases?
+A Developer
+B Fleet Administrator ✓
+C Application Owner
+D Auditor
+4 Which licensing model is supported by Autonomous Database Dedicated?
+A Pay As You Go only
+B Bring Your Own License (BYOL) ✓
+C Open Source License only
+D Subscription License only
+5 What is the correct high-level workflow for setting up Autonomous Database Dedicated?
+A Create ADB → Exadata Infrastructure → AVMC
+B Request Service Limit → Configure Fleet Admin → Create Private Database Cloud → Self Service Database Provisioning
+✓
+C Create VCN → Database Users → Exadata Infrastructure
+D Create Autonomous Database → Create ACD
+6 What is the maximum number of Autonomous Container Databases (ACDs) supported
+within a single Autonomous VM Cluster?
+A 8
+B 12
+C 16 ✓
+D 32
+7 For High Availability deployments, what is the maximum number of Autonomous
+Databases supported in one Autonomous VM Cluster?
+A 25
+B 100
+C 150
+D 200 ✓
+8 For Extreme Availability deployments, what is the maximum number of Autonomous
+Databases supported in one Autonomous VM Cluster?
+A 25 ✓
+B 50
+C 100
+D 200
+9 Which feature allows developers to provision Autonomous Databases without Fleet
+Administrator involvement after the environment has been configured?
+A Manual SQL scripts
+B Self-Service Provisioning ✓
+C RMAN
+D Oracle Enterprise Manager
+10 Why is a Fleet Administrator required during the initial deployment?
+A To write SQL queries
+B To provision and configure the Dedicated database cloud infrastructure ✓
+C To create application schemas
+D To manage Object Storage
+11 An enterprise is deploying Autonomous Database Dedicated for the first time. Before any
+Autonomous Databases can be created, Oracle recommends requesting an increase in which
+OCI resource?
+A Object Storage quota
+B Exadata Infrastructure service limit ✓
+C IAM users
+D FastConnect bandwidth
+12 A Fleet Administrator has completed Exadata Infrastructure provisioning. The next objective is to
+enable application teams to provision databases independently.
+Which sequence should be followed?
+A Create Autonomous Database → Create ACD
+B Create AVMC → Create ACD → Enable Self-Service Database Provisioning ✓
+C Create Compute Instance → Create Database
+D Configure Object Storage first
+13 An enterprise plans to host multiple departments on a single Exadata Infrastructure while
+allowing each department to create databases independently.
+Which feature enables this capability?
+A SQL Developer
+B Self-Service Autonomous Database Provisioning ✓
+C Oracle Wallet
+D RMAN
+14 A Fleet Administrator is designing a High Availability environment expected to host 180
+Autonomous Databases.
+Which statement is correct?
+A One AVMC is sufficient.
+B High Availability supports up to 200 Autonomous Databases per AVMC. ✓
+C High Availability supports only 100 databases.
+D The deployment requires Extreme Availability.
+15 A company wants to deploy 40 Autonomous Databases requiring Extreme Availability SLA within
+a single Autonomous VM Cluster.
+What should the architect conclude?
+A Supported because EA supports 200 databases.
+B Not supported because EA supports only 25 databases per AVMC. ✓
+C Supported if Active Data Guard is disabled.
+D Supported after enabling BYOL.
+16 A customer requires separate maintenance schedules for Development, Testing, and Production
+environments while keeping them on dedicated infrastructure.
+Which Autonomous Database Dedicated capability best satisfies this requirement?
+A Serverless resource sharing
+B Independent lifecycle management through Dedicated architecture ✓
+C SQL Developer Workspaces
+D Shared Object Storage
+17 A database administrator needs to apply a critical security patch immediately instead of waiting
+for the scheduled maintenance window.
+Which Dedicated capability addresses this requirement?
+A Manual Operating System Updates
+B Instant Patch Now ✓
+C RMAN Recovery
+D Data Pump
+18 An organization plans to migrate several on-premises Oracle databases into Autonomous
+Database Dedicated.
+Which migration methods are officially supported?
+A Data Pump only
+B GoldenGate only
+C Data Pump, Network Link, Object Storage, and Oracle GoldenGate ✓
+D RMAN Duplication only
+19 A customer needs zero application downtime during planned maintenance while maintaining high
+database availability.
+Which Dedicated feature best supports this requirement?
+A Database In-Memory
+B Application Continuity ✓
+C Oracle Wallet
+D SQL Worksheet
+20 A solutions architect is deciding between Autonomous Database Serverless and Autonomous
+Database Dedicated. The customer requires dedicated Exadata hardware, independent
+maintenance schedules, patch control, Oracle Sharding support, and Database In-Memory.
+Which deployment should be recommended?
+A Autonomous Database Serverless
+B Autonomous Database Dedicated ✓
+C Oracle Base Database Service
+D Exadata Database Service on Shared Infrastructure
+Explanation: Dedicated provides isolated Exadata Infrastructure, lifecycle control, advanced enterprise
+capabilities such as Database In-Memory and Oracle Sharding, and greater administrative flexibility than
+Serverless.
+1 What is the first resource that must be provisioned in Autonomous Database Dedicated?
+A Autonomous Database
+B Autonomous Container Database
+C Exadata Infrastructure ✓
+D Autonomous VM Cluster
+Explanation: Exadata Infrastructure is the physical foundation on which all other Dedicated resources
+are created.
+2 Which resource directly hosts one or more Autonomous Databases?
+A Exadata Infrastructure
+B Autonomous Container Database (ACD) ✓
+C Virtual Cloud Network
+D Compute Instance
+3 Which OCI interface is primarily used to provision Autonomous Database Dedicated
+resources?
+A SQL Developer
+B Oracle APEX
+C OCI Console ✓
+D RMAN
+4 Which sequence correctly represents the provisioning hierarchy in Autonomous Database
+Dedicated?
+A Autonomous Database → Exadata Infrastructure → ACD
+B Exadata Infrastructure → Autonomous VM Cluster → Autonomous Container Database →
+Autonomous Database
+✓
+C Autonomous VM Cluster → Exadata Infrastructure → Autonomous Database
+D ACD → Exadata Infrastructure → Autonomous Database
+5 Why must Exadata Infrastructure be provisioned before creating an Autonomous VM
+Cluster?
+A It creates IAM policies.
+B It provides the dedicated compute and storage resources required by the VM Cluster. ✓
+C It configures Object Storage.
+D It creates backup policies.
+6 Why is an Autonomous Container Database (ACD) created before provisioning
+Autonomous Databases?
+A It stores RMAN backups.
+B It defines lifecycle policies and hosts Autonomous Databases. ✓
+C It manages IAM authentication.
+D It replaces the Virtual Cloud Network.
+7 Which statement best describes Dedicated infrastructure?
+A Resources are shared among all OCI customers.
+B Oracle automates database operations while providing isolated infrastructure. ✓
+C Customers perform operating system patching.
+D Exadata Infrastructure is optional.
+8 Which resource must exist before an Autonomous Database can be created?
+A Autonomous Container Database ✓
+B Compute Instance
+C Object Storage Bucket
+D Load Balancer
+9 A Fleet Administrator has successfully provisioned an Exadata Infrastructure.
+What should be the next step before developers can create Autonomous Databases?
+A Create Object Storage
+B Provision an Autonomous VM Cluster ✓
+C Configure Oracle GoldenGate
+D Enable Data Guard
+10 An organization wants complete separation between Development, Testing, and Production
+databases while using the same Exadata Infrastructure.
+Which resource should be provisioned to achieve this logical isolation?
+A Object Storage
+B Autonomous VM Cluster ✓
+C Autonomous Container Database
+D Internet Gateway
+Explanation: Autonomous VM Clusters provide logical isolation on the same Exadata Infrastructure.
+11 A company wants multiple Autonomous Databases to inherit the same maintenance schedule,
+backup retention policy, and lifecycle settings.
+Which resource should be configured?
+A Exadata Infrastructure
+B Autonomous Container Database ✓
+C OCI Compartment
+D FastConnect
+12 A database administrator attempts to create an Autonomous Database immediately after
+provisioning Exadata Infrastructure but receives an error because a required resource is missing.
+Which resource was most likely not created?
+A Internet Gateway
+B Autonomous VM Cluster and Autonomous Container Database ✓
+C Compute Instance
+D Oracle Wallet
+13 An enterprise is designing a dedicated private database cloud where Oracle manages database
+operations while application teams provision databases on demand.
+Which provisioning approach best supports this requirement?
+A Provision Autonomous Databases directly on shared infrastructure.
+B Build the environment in the order: Exadata Infrastructure → AVMC → ACD →
+Autonomous Database.
+✓
+C Provision Compute Instances first.
+D Use Serverless Autonomous Database.
+14 A company wants all newly created Autonomous Databases to automatically inherit standardized
+backup retention policies and software update schedules without configuring each database
+individually.
+At which layer should these policies be defined?
+A Exadata Infrastructure
+B Autonomous VM Cluster
+C Autonomous Container Database ✓
+D OCI Compartment
+15 A multinational enterprise plans to deploy Autonomous Database Dedicated for several business
+units. They require Oracle-managed automation while ensuring every database runs on
+dedicated hardware with predictable performance.
+Which statement best justifies choosing Autonomous Database Dedicated?
+A It provides shared infrastructure with manual database management.
+B It combines Oracle-managed automation with dedicated Exadata Infrastructure for
+performance isolation.
+✓
+C It eliminates the need for Autonomous Container Databases.
+D It requires customers to manage operating system updates.
+Explanation: Autonomous Database Dedicated combines the benefits of Oracle automation with
+dedicated Exadata Infrastructure, providing isolation, predictable performance, and simplified
+management.
+1 Which OCI IAM policy verb provides full administrative access to Autonomous Database
+Dedicated resources?
+A Inspect
+B Read
+C Use
+D Manage ✓
+Explanation: The Manage verb grants full permissions, including creating, updating, deleting, and
+managing resources.
+2 Which IAM resource family is used to manage Autonomous Databases?
+A compute-family
+B virtual-network-family
+C autonomous-database-family ✓
+D object-family
+3 Which IAM verb allows users to view resource details without modifying them?
+A Inspect
+B Read ✓
+C Use
+D Manage
+4 Which IAM resource family is required to manage Exadata Infrastructure?
+A database-family
+B cloud-exadata-infrastructure-family ✓
+C compute-family
+D object-family
+5 Which IAM resource family controls Autonomous VM Clusters?
+A compute-family
+B cloud-autonomous-vmcluster-family ✓
+C database-family
+D virtual-network-family
+6 Which resource family controls VCNs, subnets, route tables, and private endpoints?
+A autonomous-database-family
+B object-family
+C virtual-network-family ✓
+D compute-family
+7 Which OCI policy statement correctly grants database administrators full control over
+Autonomous Databases within the Finance compartment?
+A Grant DBAdmins database access
+B Allow DBAdmins to access databases
+C Allow group DBAdmins to manage autonomous-database-family in compartment
+Finance
+✓
+D Assign DBAdmins to Finance
+8 Which statement best describes the OCI principle of least privilege?
+A Always grant Manage permissions.
+B Grant only the permissions required to perform assigned tasks. ✓
+C Every user should receive Administrator privileges.
+D Every service should have a separate tenancy.
+9 A database administrator must create, modify, start, stop, and delete Autonomous Databases but
+should not manage networking resources.
+Which IAM policy is most appropriate?
+A Allow group DBAdmins to manage autonomous-database-family ✓
+B Allow group DBAdmins to manage virtual-network-family
+C Allow group DBAdmins to inspect all-resources
+D Allow group DBAdmins to use object-family
+10 A network administrator is responsible for configuring Virtual Cloud Networks (VCNs), subnets,
+route tables, security lists, and private endpoints for Autonomous Database Dedicated.
+Which IAM resource family should be granted?
+A autonomous-database-family
+B cloud-autonomous-vmcluster-family
+C virtual-network-family ✓
+D object-family
+11 An organization wants developers to connect to existing Autonomous Databases and perform
+their work but prevents them from creating or deleting databases.
+Which IAM verb best satisfies this requirement?
+A Manage
+B Use ✓
+C Read
+D Inspect
+Explanation: Use allows interaction with existing resources without granting full administrative
+privileges.
+12 A security auditor needs to review configuration details of Autonomous Database resources but
+must not make any changes.
+Which IAM verb should be granted?
+A Manage
+B Use
+C Read ✓
+D Inspect
+13 A compliance officer only needs to view the names and metadata of OCI resources to verify
+inventory reports.
+Which IAM verb should be assigned?
+A Manage
+B Read
+C Use
+D Inspect ✓
+14 A Fleet Administrator is preparing IAM policies for Autonomous Database Dedicated deployment.
+The administrator must manage Exadata Infrastructure, Autonomous VM Clusters, Autonomous
+Databases, and networking resources.
+Which combination best satisfies this requirement?
+A Only autonomous-database-family
+B Only cloud-exadata-infrastructure-family
+C Only virtual-network-family
+D cloud-exadata-infrastructure-family, cloud-autonomous-vmcluster-family, autonomous database-family, and virtual-network-family
+✓
+15 An enterprise follows the principle of least privilege while assigning IAM policies. A junior DBA
+only needs to review database configuration and performance information but should not modify
+any resources.
+Which IAM verb should be recommended?
+A Manage
+B Use
+C Read ✓
+D Inspect
+Explanation: Read allows users to view detailed resource information without making changes, making it
+appropriate for monitoring and review tasks.
+1 Which tool is primarily used for performance monitoring, scripting, and schema
+management in Autonomous Database?
+A Database Management Service
+B Database Actions ✓
+C Operations Insights
+D Enterprise Manager
+2 Which OCI service is designed to monitor the health of a single Autonomous Database or
+an entire fleet?
+A Database Actions
+B Database Management Service ✓
+C Operations Insights
+D SQL Developer
+3 Which OCI service forecasts SQL performance trends and future capacity requirements?
+A Database Actions
+B Operations Insights ✓
+C Enterprise Manager
+D Performance Hub
+4 When downloading secure connection credentials for an Autonomous Database, what
+important component is included?
+A SSH Private Key
+B Wallet ✓
+C PEM Certificate
+D API Signing Key
+5 Which interface exposes administrative operations for Autonomous Database Dedicated?
+A CLI only
+B OCI Console UI and REST APIs ✓
+C Enterprise Manager only
+D SQL Worksheet
+6 Which resources support scheduled maintenance through the OCI Control Plane?
+A Compute Instances
+B Exadata Infrastructure, Autonomous VM Cluster, and Autonomous Container Database ✓
+C Object Storage
+D Virtual Cloud Network
+7 How is CPU and storage utilization displayed in the OCI Console?
+A Command-line reports only
+B Email summaries
+C Graphical dashboards and tabular reports ✓
+D JSON files
+8 What do Autonomous Database Dedicated resources emit to report lifecycle changes?
+A Alerts
+B Events ✓
+C Policies
+D Logs
+9 How are OCI Events typically processed to notify administrators?
+A SQL triggers
+B Event rules that generate notifications ✓
+C Cron jobs
+D Database Scheduler
+10 Which of the following represents a maintenance lifecycle event?
+A Disk Failure
+B Scheduled → Reminder → Started → Completed ✓
+C DR Replication Stalled
+D SSL Certificate Expired
+11 A DBA wants to monitor hundreds of Autonomous Databases from a single console and receive
+health metrics, alarms, and operational insights.
+Which OCI service should be recommended?
+A Database Actions
+B Database Management Service ✓
+C SQL Developer
+D Object Storage
+12 An enterprise wants historical workload analysis to predict CPU shortages before they impact
+production.
+Which OCI service provides this capability?
+A Database Actions
+B Operations Insights ✓
+C OCI Logging
+D Enterprise Manager Express
+13 A company wants to automatically notify administrators whenever an Autonomous VM Cluster
+changes state.
+Which OCI feature should be implemented?
+A SQL Trace
+B OCI Events with notification rules ✓
+C Oracle Scheduler
+D APEX Automation
+14 A maintenance operation for an Exadata Infrastructure has been scheduled.
+Which sequence correctly represents the maintenance lifecycle?
+A Started → Scheduled → Completed
+B Scheduled → Reminder → Started → Completed ✓
+C Reminder → Completed → Started
+D Scheduled → Failed → Started
+15 During monitoring, an administrator receives an event indicating "Switchover Completed."
+Which feature generated this event?
+A Automatic Backups
+B Autonomous Data Guard ✓
+C Database Actions
+D Operations Insights
+16 A database administrator receives an event stating "DR Replication Stalled."
+How is this event classified?
+A Routine Maintenance Event
+B Backup Lifecycle Event
+C Critical / Warning / Information Event ✓
+D Update Lifecycle Event
+17 An SSL certificate protecting database connectivity expires.
+Which category best describes this event?
+A Maintenance Lifecycle Event
+B Critical / Warning / Information Event ✓
+C Backup Event
+D Autonomous Data Guard Event
+18 An administrator notices that an OCI API operation has remained in a "Workflow Stuck" state for
+several minutes.
+How should this event be classified?
+A Maintenance Event
+B Informational Backup Event
+C Critical / Warning / Information Event ✓
+D Database Upgrade Event
+19 A company already uses Enterprise Manager Cloud Control to monitor its on-premises Oracle
+databases. After migrating to Autonomous Database Dedicated, they want to continue using the
+same monitoring platform whenever possible.
+What should you recommend?
+A Enterprise Manager cannot monitor Autonomous Database Dedicated.
+B Enterprise Manager Cloud Control can continue monitoring Autonomous Database
+Dedicated.
+✓
+C Only Database Actions is supported.
+D Monitoring is available only through SQL Developer.
+20 An operations team wants Oracle-managed maintenance while still allowing administrators to
+manually trigger backups before major application deployments and increase CPU resources
+during seasonal demand.
+Which combination of capabilities satisfies this requirement?
+A Manual host patching and VM resizing
+B On-demand backups, long-term backups, and manual CPU/storage scaling ✓
+C Manual OS upgrades and Exadata firmware updates
+D Database cloning only
+Explanation: Although Oracle automates routine maintenance, administrators can still initiate on-demand
+backups, configure long-term backups, and manually scale compute or storage when business
+requirements demand it.
+1 In the standard maintenance promotion workflow for Autonomous Database Dedicated,
+what is the typical sequence for applying software updates?
+A Staging for user acceptance, followed by Development, and finally production.
+B Simultaneous deployment across Development, Staging, and Production to ensure version
+parity.
+C Production, then validation in staging, followed by development.
+D Development for initial testing, then staging for validation, followed by production. ✓
+2 Which level of granularity can a customer use to customise their patching schedule for an
+Autonomous Database Dedicated environment?
+A The month in the quarter, the week in the month, the day in the week, and the specific
+window.
+✓
+B Only the specific day of the year provided by Oracle.
+C The year and the specific hour, with no control over the month or week.
+D Only the specific quarter and the time of day.
+3 How does Autonomous Database Dedicated handle application availability during
+maintenance windows?
+A Applications are paused at the mid-tier until the maintenance end event is generated.
+B Users must manually failover to a secondary region before the maintenance window begins.
+C The database remains continuously available by using Application Continuity and rolling
+updates.
+✓
+D The database undergoes a mandatory four-hour shutdown to ensure data integrity during the
+patch.
+4 If a fleet administrator determines that a quarterly update is not suitable for their current
+production cycle, what option does the service provide?
+A The administrator can skip the current update and wait for the next quarterly release. ✓
+B The administrator must cancel the subscription to avoid the automatic update.
+C The administrator can delay the patch indefinitely until the software version reaches end-of life.
+D The administrator can only delay the patch by a maximum of 24 hours.
+5 What is a distinguishing characteristic of 'one-off' patching in an autonomous dedicated
+environment?
+A They require a full system rebuild and cannot be scheduled by the user.
+B They only apply to the underlying Exadata infrastructure and never the database.
+C They are automatically applied at the start of every month regardless of customer preference.
+D They provide fixes outside of the regular quarterly maintenance cycles. ✓
+6 Which set of events is generated to help users monitor the lifecycle of a maintenance
+operation?
+A Request, Approval, Implementation, and Rollback.
+B Scheduled, Reminder, Begin, and End. ✓
+C Low, Medium, High, and Critical.
+D Draft, Review, Published, and Archived.
+7 Which best practice for maintenance involves redirecting traffic away from an instance
+before updates begin?
+A One-Off Patching
+B Standby First
+C Connection Draining ✓
+D Rolling Updates
+8 Exadata security patches are typically released with what frequency, specifically for fixes
+with a CVSS score of 7 or higher?
+A Ad-hoc
+B Monthly ✓
+C Weekly
+D Quarterly
+9 Within what minimum timeframe must a customer schedule a one-off container database
+patch?
+A 72 hours ✓
+B 1 week
+C 24 hours
+D 1 month
+10 When monitoring activities using Events and Notifications, which of the following is
+classified as a 'Critical, Warning, or Information' event rather than a 'Lifecycle' event?
+A Maintenance started
+B Data Guard switchover
+C SSL Certificate expired ✓
+D Backup completed
