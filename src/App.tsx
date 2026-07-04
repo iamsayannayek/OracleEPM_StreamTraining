@@ -744,8 +744,9 @@ export default function App() {
   const initialState = loadInitialState();
 
   // Navigation State
-  const [view, setView] = useState<'modules' | 'quiz' | 'results' | 'bookmarks'>(initialState?.view || 'modules');
+  const [view, setView] = useState<'modules' | 'quiz' | 'results' | 'bookmarks' | 'summary'>(initialState?.view || 'modules');
   const [previousView, setPreviousView] = useState<'modules' | 'bookmarks'>('modules');
+  const [unansweredPopup, setUnansweredPopup] = useState<number[] | null>(null);
   const [reviewIndices, setReviewIndices] = useState<number[]>([]);
   const [activeModuleId, setActiveModuleId] = useState<string | null>(null);
   const [activeChapter, setActiveChapter] = useState<Chapter | null>(initialState?.activeChapter || null);
@@ -787,9 +788,10 @@ export default function App() {
     setActiveChapter(chapter);
     setCurrentIndex(0);
     if (forceRestart) {
+      const persisted = getPersistedData(chapter.id);
       setUserAnswers({});
-      setBookmarks({});
-      localStorage.removeItem(`oci-quiz-${chapter.id}`);
+      setBookmarks(persisted.bookmarks || {});
+      savePersistedData(chapter.id, { userAnswers: {}, bookmarks: persisted.bookmarks || {} });
     } else {
       const persisted = getPersistedData(chapter.id);
       setUserAnswers(persisted.userAnswers || {});
@@ -817,6 +819,19 @@ export default function App() {
     }));
   };
 
+  const checkAndFinishQuiz = () => {
+    if (!activeChapter) return;
+    const unanswered = activeChapter.questions
+      .map((_, idx) => idx)
+      .filter(idx => !userAnswers[idx]);
+      
+    if (unanswered.length > 0) {
+      setUnansweredPopup(unanswered);
+    } else {
+      setView('results');
+    }
+  };
+
   const handleNextQuestion = () => {
     if (!activeChapter) return;
 
@@ -833,7 +848,7 @@ export default function App() {
     if (currentIndex + 1 < activeChapter.questions.length) {
       setCurrentIndex((prev: number) => prev + 1);
     } else {
-      setView('results');
+      checkAndFinishQuiz();
     }
   };
 
@@ -968,6 +983,15 @@ export default function App() {
                         const solvedCount = Object.keys(persisted.userAnswers || {}).length;
                         const totalCount = chapter.questions.length;
                         const chapProgress = totalCount === 0 ? 0 : Math.round((solvedCount / totalCount) * 100);
+                        
+                        let lastScore = 0;
+                        if (persisted.userAnswers) {
+                          chapter.questions.forEach((q, qIdx) => {
+                            if (persisted.userAnswers[qIdx] === q.correctAnswer) {
+                              lastScore++;
+                            }
+                          });
+                        }
 
                         let statusText = "Not started";
                         let statusBadge = "bg-slate-200 text-slate-600";
@@ -1031,6 +1055,41 @@ export default function App() {
                                     <div className="bg-blue-500 h-1.5 rounded-full transition-all duration-500" style={{ width: `${chapProgress}%` }}></div>
                                   </div>
                                 </div>
+                                {chapProgress === 100 && (
+                                  <div className="mt-4 space-y-2">
+                                    <div className="flex justify-between items-center bg-emerald-50 rounded-lg px-3 py-2 border border-emerald-100">
+                                      <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wide">Last Score</span>
+                                      <span className="text-sm font-black text-emerald-600">{lastScore} / {totalCount}</span>
+                                    </div>
+                                    <div className="flex gap-2">
+                                      <button
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          setPreviousView('modules');
+                                          startQuiz(chapter, true);
+                                        }}
+                                        className="flex-1 flex items-center justify-center gap-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[11px] font-bold py-2 px-2 rounded-lg transition-colors border border-slate-200"
+                                      >
+                                        <RefreshCcw size={14} />
+                                        Retake
+                                      </button>
+                                      <button
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          setActiveChapter(chapter);
+                                          const persisted = getPersistedData(chapter.id);
+                                          setUserAnswers(persisted.userAnswers || {});
+                                          setBookmarks(persisted.bookmarks || {});
+                                          setView('summary');
+                                        }}
+                                        className="flex-1 flex items-center justify-center gap-1.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-[11px] font-bold py-2 px-2 rounded-lg transition-colors border border-indigo-200"
+                                      >
+                                        <BookOpen size={14} />
+                                        Summary
+                                      </button>
+                                    </div>
+                                  </div>
+                                )}
                               </div>
                             </div>
                           </button>
@@ -1175,8 +1234,73 @@ export default function App() {
             </button>
           </div>
 
-          {/* Results Screen inside Quiz Container */}
-          {view === 'results' ? (
+          {/* Summary Screen inside Quiz Container */}
+          {view === 'summary' ? (
+            <div className="p-8 md:p-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
+              <div className="flex items-center justify-between mb-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-800">Chapter Summary</h2>
+                <button
+                  onClick={() => setView('results')}
+                  className="flex items-center gap-2 bg-white border border-slate-200 hover:bg-slate-50 px-4 py-2 rounded-lg text-sm font-semibold transition-colors shadow-sm text-slate-700 cursor-pointer"
+                >
+                  <ArrowLeft size={16} /> Back to Results
+                </button>
+              </div>
+
+              <div className="space-y-12">
+                {activeChapter.questions.map((q, idx) => {
+                  const currentSelected = userAnswers[idx];
+                  
+                  return (
+                    <div key={q.id} className="bg-slate-50 p-6 rounded-xl border border-slate-100 shadow-sm">
+                      <h3 className="font-bold text-slate-800 mb-4 leading-snug text-lg">
+                        <span className="text-blue-600 mr-2">Q{idx + 1}.</span>
+                        {q.question}
+                      </h3>
+                      
+                      <div className="flex flex-col gap-3 mb-6">
+                        {q.options.map((option) => {
+                          const isOptionCorrect = option.id === q.correctAnswer;
+                          const isOptionSelected = currentSelected === option.id;
+                          
+                          let optionStyle = 'border-slate-200 text-slate-500 bg-white';
+                          let badgeStyle = 'border-slate-200 text-slate-400';
+                          
+                          if (isOptionCorrect) {
+                            optionStyle = 'border-emerald-500 bg-emerald-50/50 text-emerald-900 shadow-sm';
+                            badgeStyle = 'border-emerald-500 bg-emerald-500 text-white';
+                          } else if (isOptionSelected) {
+                            optionStyle = 'border-red-500 bg-red-50/50 text-red-900 shadow-sm';
+                            badgeStyle = 'border-red-500 bg-red-500 text-white';
+                          }
+                          
+                          return (
+                            <div key={option.id} className={`p-4 rounded-xl border-2 flex items-start gap-4 transition-all ${optionStyle}`}>
+                              <div className={`flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center font-bold text-sm ${badgeStyle}`}>
+                                {option.id}
+                              </div>
+                              <span className="flex-grow pt-1 font-medium">{option.text}</span>
+                              {isOptionCorrect && <CheckCircle2 className="w-6 h-6 text-emerald-500 flex-shrink-0 mt-0.5" />}
+                              {isOptionSelected && !isOptionCorrect && <XCircle className="w-6 h-6 text-red-500 flex-shrink-0 mt-0.5" />}
+                            </div>
+                          );
+                        })}
+                      </div>
+
+                      {q.explanation && (
+                        <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                          <p className="text-sm font-medium text-blue-900 leading-relaxed">
+                            <span className="font-bold mr-1">Explanation:</span>
+                            {q.explanation}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : view === 'results' ? (
             <div className="p-8 md:p-12 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in-95 duration-500">
               <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mb-6">
                 <Award className="w-12 h-12 text-blue-600" />
@@ -1199,7 +1323,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex flex-wrap justify-center gap-4">
                 <button
                   onClick={() => startQuiz(activeChapter, true)}
                   className="flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 px-6 rounded-lg transition-colors shadow-sm"
@@ -1208,8 +1332,15 @@ export default function App() {
                   Retake
                 </button>
                 <button
+                  onClick={() => setView('summary')}
+                  className="flex items-center justify-center gap-2 bg-indigo-100 hover:bg-indigo-200 text-indigo-700 font-semibold py-3 px-6 rounded-lg transition-colors shadow-sm cursor-pointer"
+                >
+                  <BookOpen size={18} />
+                  Summary
+                </button>
+                <button
                   onClick={exitToModules}
-                  className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors shadow-sm"
+                  className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors shadow-sm cursor-pointer"
                 >
                   Choose Next Chapter
                   <ArrowRight size={18} />
@@ -1318,7 +1449,7 @@ export default function App() {
                       <div className="flex items-center gap-1.5"><div className="w-3 h-3 rounded-full bg-amber-400 border-2 border-white ring-1 ring-slate-200"></div> Bookmarked</div>
                     </div>
                     <button
-                      onClick={() => setView('results')}
+                      onClick={checkAndFinishQuiz}
                       className="text-sm font-bold bg-slate-900 text-white px-4 py-2 rounded-lg hover:bg-slate-800 transition-colors shadow-sm w-full md:w-auto"
                     >
                       Submit Quiz Now
@@ -1420,6 +1551,42 @@ export default function App() {
 
             </div>
           )}
+        </div>
+      )}
+
+      {/* Unanswered Questions Modal */}
+      {unansweredPopup && (
+        <div className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 animate-in zoom-in-95 duration-200">
+            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-3xl font-black text-amber-600">!</span>
+            </div>
+            <h3 className="text-xl font-bold text-center text-slate-800 mb-2">Unanswered Questions</h3>
+            <p className="text-slate-600 text-center mb-6 text-sm">
+              You haven't answered all questions. Please complete them before finishing the chapter:
+            </p>
+            <div className="flex flex-wrap gap-2 justify-center mb-8 max-h-48 overflow-y-auto p-3 bg-slate-50 rounded-xl border border-slate-100">
+              {unansweredPopup.map(qNum => (
+                <button
+                  key={qNum}
+                  onClick={() => {
+                    setCurrentIndex(qNum);
+                    setShowOverview(false);
+                    setUnansweredPopup(null);
+                  }}
+                  className="w-10 h-10 rounded-lg bg-white border border-slate-200 font-bold text-slate-700 hover:border-blue-500 hover:text-blue-600 transition-colors shadow-sm flex items-center justify-center"
+                >
+                  {qNum + 1}
+                </button>
+              ))}
+            </div>
+            <button
+              onClick={() => setUnansweredPopup(null)}
+              className="w-full py-3 bg-slate-800 hover:bg-slate-900 text-white rounded-xl font-bold transition-colors shadow-sm"
+            >
+              Continue Quiz
+            </button>
+          </div>
         </div>
       )}
     </div>
