@@ -1,0 +1,156 @@
+Question 1: Fine-Grained Data Visibility
+Scenario: A healthcare organization is building a patient portal using Oracle APEX. Medical
+receptionists need to see patient names and appointment times, but strict privacy regulations
+dictate that only assigned doctors can view the specific diagnostic codes and treatment
+history columns.
+Which feature allows developers to enforce this exact level of visibility?
+A) Identity Integration
+B) Access control
+C) Universal Theme
+D) App Builder
+Correct Answer: B
+Explanation: Access control allows developers to define exactly who can see and do what,
+providing fine-grained control over users, roles, and data access down to the row and column
+level.
+
+Question 2: Corporate Authentication
+Scenario: A large enterprise is deploying a new internal APEX application. IT policy
+requires that employees log into the new app using the company's existing corporate
+credentials via a central Single Sign-On (SSO) provider, avoiding the need to create new
+usernames and passwords.
+Which foundational capability makes this straightforward to implement?
+A) Data Isolation
+B) Workflow
+C) Identity Integration
+D) Compliance
+Correct Answer: C
+Explanation: Identity Integration allows applications to easily federate with popular identity
+providers (IdPs) to enable single sign-on and centralized identity management without
+complex configuration.
+
+Question 3: Concurrent Business Processes
+Scenario: A financial services company is modernizing its loan approval system. The new
+architecture requires that once an application is submitted, background checks and credit
+score evaluations must trigger and run simultaneously rather than waiting for one to finish
+before the other starts.
+Which platform enhancement should the development team leverage?
+A) Components
+B) Workflow
+C) Auditing
+D) Translations
+Correct Answer: B
+Explanation: Enhanced workflow capabilities include support for parallel flows, allowing
+multiple complex steps to execute concurrently, along with new APIs for greater extensibility.
+
+Question 4: Secure External Integrations
+Scenario: A software engineer needs to connect their APEX application to a highly secure
+external banking API. This connection requires dynamic OAuth scopes and signed assertions
+to authenticate properly before fetching financial data.
+Which platform enhancement area provides the specific support needed for this connection?
+A) Security
+B) Universal Theme
+C) Data Isolation
+D) App Builder
+Correct Answer: A
+Explanation: Recent security enhancements strengthen how applications connect and
+operate by providing REST data source support for dynamic OAuth scopes, signed assertions,
+and password flows.
+
+Question 5: Global Application Localization
+Scenario: A retail company is launching its internal inventory application in three new
+countries. The development team needs to localize the application into Spanish, French, and
+German efficiently, but they want to avoid the high maintenance overhead of creating and
+updating separate "shadow" applications for each language.
+Which enhancement provides a simplified solution for this requirement?
+A) Font APEX 2.5 updates
+B) Workspace-level SMTP controls
+C) Builder Extension backlinks
+D) Message-based translation model
+Correct Answer: D
+Explanation: A new message-based translation model simplifies how applications are
+localized, making it easier to manage and update translations without needing to maintain
+separate shadow applications.
+
+Q6. What does AutoML primarily automate in the context of Oracle Machine Learning?
+A) Data visualization tasks
+B) The workflow for in-database machine learning classification and regression algorithms
+C) Database backup and recovery
+D) Cloud storage provisioning
+Correct Answer: B
+Explanation: AutoML automates the complete machine learning workflow inside Oracle Database,
+including algorithm selection, feature selection, and model tuning for classification and
+regression models.
+
+Q7. Which two interfaces can be used to access AutoML in Oracle Autonomous Database?
+A) OML4Py and OML AutoML UI
+B) OML4R and SQL Developer
+C) APEX and REST API only
+D) OML4Py and OML4SQL only
+Correct Answer: A
+Explanation: Oracle provides two official AutoML interfaces: OML4Py (Python API) and OML AutoML UI (No-code graphical interface)
+
+Q8. How many steps make up the OML AutoML UI pipeline?
+A) Three
+B) Four
+C) Five
+D) Six
+Correct Answer: C
+Explanation: The AutoML UI pipeline has five stages: 1. Adaptive Sampling 2. Algorithm Selection 3. Feature Selection 4. Model Tuning 5. Feature Selection Impact
+
+Q9. What is the overarching goal of algorithm selection in AutoML?
+A) To reduce the number of hyperparameters
+B) To choose an algorithm that provides a model with the highest predictive accuracy
+C) To eliminate redundant data rows
+D) To increase the dataset size
+Correct Answer: B
+Explanation: Algorithm selection uses meta learning to predict which algorithm is most likely to produce the most accurate model without trying every available algorithm.
+
+Q10. Scenario-Based Question
+A data scientist is working with a dataset containing 500 columns. Many columns are highly correlated or provide no predictive value. She wants AutoML to automatically remove these unnecessary columns before building the model.
+A) Automated algorithm selection
+B) Automated feature selection
+C) Automated model tuning
+D) Adaptive sampling
+Correct Answer: B
+Explanation: Feature selection identifies and removes irrelevant or redundant columns, reducing noise and improving model efficiency. It works on features (columns) rather than rows or algorithms.
+
+Q11. Scenario-Based Question
+A team building an in-database classification model wants AutoML to avoid testing every available algorithm because doing so would consume too much time and computing resources. Instead, they want AutoML to intelligently predict which algorithms are most likely to perform well.
+A) Automated feature selection
+B) Automated model tuning
+C) Automated algorithm selection
+D) Adaptive sampling
+Correct Answer: C
+Explanation: Algorithm selection uses meta learning to analyze dataset characteristics and predict which algorithms are likely to perform best. This avoids exhaustive testing and significantly reduces computation time.
+
+Q12. How many main steps does OML4Py's AutoML process consist of?
+A) Two
+B) Three
+C) Four
+D) Five
+Correct Answer: B
+Explanation: OML4Py AutoML has three major steps: 1. Automated Algorithm Selection 2. Automated Feature Selection 3. Automated Model Tuning
+
+Q13. What is the primary aim of adaptive sampling in the OML AutoML UI pipeline?
+A) To eliminate noisy features from the dataset
+B) To find the smallest sample size that adequately represents the full dataset
+C) To rank algorithms based on predicted performance
+D) To tune hyperparameters using gradient descent
+Correct Answer: B
+Explanation: Adaptive sampling selects the smallest representative sample of the data. This reduces computation time while maintaining model accuracy.
+
+Q14. What is the primary aim of feature selection?
+A) To choose features in the dataset that are most predictive of the target, reducing dataset size
+B) To increase the number of algorithms tested
+C) To determine the sample size
+D) To rank algorithms by performance
+Correct Answer: A
+Explanation: Feature selection removes unnecessary or irrelevant columns, keeping only the features that contribute to prediction. This improves efficiency and often increases model quality.
+
+Q15. What is the purpose of model tuning in the AutoML pipeline?
+A) To determine the set of hyperparameter values that produce a higher quality model
+B) To reduce the number of algorithms considered
+C) To select the smallest representative sample
+D) To rank features by predictive impact
+Correct Answer: A
+Explanation: Model tuning automatically searches for the best hyperparameter values to improve the model's predictive performance.
